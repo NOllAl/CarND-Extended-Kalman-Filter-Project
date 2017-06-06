@@ -102,11 +102,10 @@ void KalmanFilter::UpdateRadar(const VectorXd &z) {
 
   // Calculations as for laser
   VectorXd y = z - x_polar;
+  // Angle normalization
   if (y(1) > M_PI / 2) {
-    std::cout << "FUFUFU";
     y(1) -= M_PI;
   } else if (y(1) < -M_PI / 2) {
-    std::cout << "DUDUDU";
     y(1) += M_PI;
   }
   MatrixXd Ht = Hj.transpose();
